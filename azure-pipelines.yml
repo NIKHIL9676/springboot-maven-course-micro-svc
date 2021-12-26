@@ -22,16 +22,5 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
 
-- task: Docker@2
-  inputs:
-    containerRegistry: 'Docker SC'
-    repository: 'naveen412/YAML build'
-    command: 'build'
-    Dockerfile: 'Dockerfile'
 
-- task: Docker@2
-  inputs:
-    containerRegistry: 'Docker SC'
-    repository: 'naveen412/YAML build'
-    command: 'push'
 
