@@ -1,2 +1,1 @@
-Start the pipeline
-trigger the pipeline
+start the azure pipeline
