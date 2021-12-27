@@ -10,7 +10,7 @@
  - repo: self
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+    vmImageName: 'ubuntu-latest'
 
 stages:
   - stage: Build
