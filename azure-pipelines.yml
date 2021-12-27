@@ -1,0 +1,45 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+ trigger:
+ - master
+
+ resources:
+ - repo: self
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+  - stage: Build
+    displayName: Build Stage
+    jobs:
+    - job: Build
+      displayName: Build 
+
+      pool:
+       vmImage: $(vmImageName)
+      steps:
+      - task: Maven@3
+        inputs:
+         mavenPomFile: 'pom.xml'
+         publishJUnitResults: true
+         testResultsFiles: '**/surefire-reports/TEST-*.xml'
+         javaHomeOption: 'JDKVersion'
+         mavenVersionOption: 'Default'
+         mavenAuthenticateFeed: false
+         effectivePomSkip: false
+         sonarQubeRunAnalysis: false
+
+      - task: Docker@2
+        inputs:
+         containerRegistry: 'ACRSC'
+         repository: 'naveen'
+         command: 'buildAndPush'
+         Dockerfile: 'Dockerfile'
+      - upload: manifests
+        artifacts: manifests
+
+  
