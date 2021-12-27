@@ -9,9 +9,6 @@ trigger:
 resources:
 - repo: self
 
- # Agent VM image name
- vmImageName: 'ubuntu-latest'
-
 stages:
 - stage: Build
   displayName: Build Stage
@@ -20,7 +17,7 @@ stages:
     displayName: Build 
 
     pool:
-     vmImage: $(vmImageName)
+     vmImage: 'ubuntu-latest'
     steps:
   
     - task: Maven@3
