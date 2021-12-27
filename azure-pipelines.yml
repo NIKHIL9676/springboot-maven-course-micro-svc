@@ -21,24 +21,24 @@ stages:
     steps:
   
     - task: Maven@3
-    inputs:
-      mavenPomFile: 'pom.xml'
-      publishJUnitResults: true
-      testResultsFiles: '**/surefire-reports/TEST-*.xml'
-      javaHomeOption: 'JDKVersion'
-      mavenVersionOption: 'Default'
-      mavenAuthenticateFeed: false
-      effectivePomSkip: false
-      sonarQubeRunAnalysis: false
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
 
     - task: Docker@2
       inputs:
-      containerRegistry: 'ACRSC'
-      repository: 'naveen'
-      command: 'buildAndPush'
-      Dockerfile: 'Dockerfile'
+        containerRegistry: 'ACRSC'
+        repository: 'naveen'
+        command: 'buildAndPush'
+        Dockerfile: 'Dockerfile'
 
     - upload: manifests
-      artifacts: manifests
+      artifact: manifests
 
   
