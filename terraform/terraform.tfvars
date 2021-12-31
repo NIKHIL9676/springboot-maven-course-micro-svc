@@ -1,0 +1,5 @@
+resource_group_name = "App_service"
+location            = "northeurope"
+app_service_name    = "naveenk1"
+os_type             = "Linux"
+azurerm_app_service_plan = "naveenk1"
