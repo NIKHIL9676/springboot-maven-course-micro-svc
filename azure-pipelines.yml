@@ -33,12 +33,27 @@ stages:
 
     - task: Docker@2
       inputs:
-        containerRegistry: 'ACRSC'
-        repository: 'naveen'
+        containerRegistry: 'DOCKERSC'
+        repository: 'naveen412/azurepipeline'
         command: 'buildAndPush'
         Dockerfile: 'Dockerfile'
 
     - upload: manifests
       artifact: manifests
+
+- stage: Deploy
+  displayName: Deploy Stage
+  jobs:
+  - job: Deploy
+    displayName: Deploy 
+
+    pool:
+    vmImage: 'ubuntu-latest'
+    
+    steps:
+      - 
+
+
+
 
   
