@@ -58,10 +58,6 @@ stages:
       - task: TerraformCLI@0
         inputs:
           command: 'init'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/main.tf'
-          backendType: 'azurerm'
-          backendServiceArm: 'Free Trial(f87aaef8-047b-488d-bf1c-b9837e226a9f)'
-          ensureBackend: true
           allowTelemetryCollection: true
          
       - task: TerraformCLI@0
