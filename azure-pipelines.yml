@@ -53,7 +53,7 @@ stages:
     steps:
       - task: TerraformInstaller@0
         inputs:
-          terraformVersion: 'latest'
+          terraformVersion: '0.12.11'
 
       - task: TerraformCLI@0
         inputs:
