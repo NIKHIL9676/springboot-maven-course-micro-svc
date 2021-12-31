@@ -57,10 +57,11 @@ stages:
 
       - task: TerraformCLI@0
         inputs:
-          command: 'init'
-          backendType: 'selfConfigured'
-          allowTelemetryCollection: true
-
+         command: 'init'
+         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
+         backendType: 'azurerm'
+         allowTelemetryCollection: true
+         
       - task: TerraformCLI@0
         inputs:
           command: 'validate'
