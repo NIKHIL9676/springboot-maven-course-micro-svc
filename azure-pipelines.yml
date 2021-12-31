@@ -48,7 +48,7 @@ stages:
     displayName: Deploy 
 
     pool:
-    vmImage: 'ubuntu-latest'
+     vmImage: 'ubuntu-latest'
     
     steps:
       - task: TerraformCLI@0
