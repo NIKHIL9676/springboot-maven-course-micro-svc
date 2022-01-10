@@ -40,6 +40,12 @@ jobs:
     vmImage: 'ubuntu-latest'
     
   steps:
+  - task: DownloadBuildArtifacts@1
+    inputs:
+      buildType: 'current'
+      downloadType: 'specific'
+      itemPattern: 'manifest/*.yml'
+      downloadPath: '$(System.ArtifactsDirectory)'
   - task: KubernetesManifest@0
     inputs:
       action: 'deploy'
