@@ -8,35 +8,34 @@ trigger:
 
 resources:
 - repo: self
-  jobs:
-  - job: Build
-    displayName: Build 
+jobs:  
+- job: Build
+  displayName: Build 
 
-    pool:
-      vmImage: 'ubuntu-latest'
+  pool:
+    vmImage: 'ubuntu-latest'
       
-    steps:
-  
-    - task: Maven@3
-      inputs:
-        mavenPomFile: 'pom.xml'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        javaHomeOption: 'JDKVersion'
-        mavenVersionOption: 'Default'
-        mavenAuthenticateFeed: false
-        effectivePomSkip: false
-        sonarQubeRunAnalysis: false
+  steps:
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      javaHomeOption: 'JDKVersion'
+      mavenVersionOption: 'Default'
+      mavenAuthenticateFeed: false
+      effectivePomSkip: false
+      sonarQubeRunAnalysis: false
 
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'DockerSC'
-        repository: 'naveenacr1352/azurepipeline'
-        command: 'buildAndPush'
-        Dockerfile: 'Dockerfile'
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'DockerSC'
+      repository: 'naveenacr1352/azurepipeline'
+      command: 'buildAndPush'
+      Dockerfile: 'Dockerfile'
 
-    - upload: manifests
-      artifact: manifests
+  - upload: manifests
+    artifact: manifests
         
     
 
