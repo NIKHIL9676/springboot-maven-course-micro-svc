@@ -33,56 +33,15 @@ stages:
 
     - task: Docker@2
       inputs:
-        containerRegistry: 'DOCKERSC'
-        repository: 'naveen412/azurepipeline'
+        containerRegistry: 'DockerSC'
+        repository: 'naveenacr1352/azurepipeline'
         command: 'buildAndPush'
         Dockerfile: 'Dockerfile'
 
     - upload: manifests
       artifact: manifests
-
-- stage: Deploy
-  displayName: Deploy Stage
-  jobs:
-  - job: Deploy
-    displayName: Deploy 
-
-    pool:
-     vmImage: 'ubuntu-latest'
+        
     
-    steps:
-      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
-        inputs:
-          terraformVersion: 'latest'
-
-      - task: TerraformCLI@0
-        inputs:
-          command: 'init'
-          allowTelemetryCollection: true
-         
-      - task: TerraformCLI@0
-        inputs:
-          command: 'validate'
-          allowTelemetryCollection: true
-
-      - task: TerraformCLI@0
-        inputs:
-          command: 'plan'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-          allowTelemetryCollection: true
-      - task: TerraformCLI@0
-        inputs:
-          command: 'apply'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
-          allowTelemetryCollection: true
-      - task: AzureRmWebAppDeployment@4
-        inputs:
-          ConnectionType: 'AzureRM'
-          azureSubscription: 'Free Trial(f87aaef8-047b-488d-bf1c-b9837e226a9f)'
-          appType: 'webAppLinux'
-          WebAppName: 'naveenk1'
-          packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-          
 
 
 
