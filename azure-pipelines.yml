@@ -6,8 +6,6 @@
 trigger:
 - master
 
-resources:
-- repo: self
 jobs:  
 - job: Build
   displayName: Build 
