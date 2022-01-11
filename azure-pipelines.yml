@@ -34,11 +34,11 @@ stages:
         command: 'buildAndPush'
         Dockerfile: 'Dockerfile'
 
-    - task: PublishBuildArtifacts@1
+    - task: PublishPipelineArtifact@1
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
+        targetPath: 'manifests'
+        artifact: 'manifests'
+        publishLocation: 'pipeline'
 
 - stage: Deploy
   displayName: Deploy stage
@@ -49,20 +49,20 @@ stages:
       vmImage: 'ubuntu-latest'
     
       steps:
-       - task: DownloadBuildArtifacts@1
-         inputs:
-           buildType: 'current'
-           downloadType: 'single'
-           artifactName: 'drop'
-           downloadPath: '$(System.ArtifactsDirectory)/manifests'
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          buildType: 'current'
+          artifactName: 'manifets'
+          targetPath: '$(Pipeline.Workspace)/manifests'
 
-       - task: KubernetesManifest@0
-         inputs:
+      - task: KubernetesManifest@0
+        inputs:
            action: 'deploy'
            kubernetesServiceConnection: 'kubesc'
            namespace: 'default'
-           manifests: 'manifests'
-
+           manifests:
+             $(Pipeline.Workspace)/manifests/springboot-deployment.yml
+             $(Pipeline.Workspace)/manifests/springboot-service.yml
 
 
 
