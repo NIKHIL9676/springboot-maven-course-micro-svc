@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: springboot-container
-        image: cloudtechmasters/springboot-maven-course-micro-svc:#{Build.BuildId}#
+        image: naveen1234.azurecr.io/buildtest:56
         ports:
         - containerPort: 8080
