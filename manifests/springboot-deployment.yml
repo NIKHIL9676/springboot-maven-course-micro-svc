@@ -18,4 +18,4 @@ spec:
       - name: springboot-container
         image: naveen1234.azurecr.io/buildtest:56
         ports:
-        - containerPort: 8080
+        - containerPort: 8082
