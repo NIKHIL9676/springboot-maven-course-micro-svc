@@ -4,5 +4,5 @@
   - name: pull an image
     docker_image:
       name: naveen412/test
-      tag: 12
+      tag: ${BUILD_NUMBER}
 
