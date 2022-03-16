@@ -1,5 +1,5 @@
 ---
 - hosts: localhost
-  tasks: 
+  tasks:
     - name: running java
-	  shell: nohup java -jar /var/lib/jenkins/workspace/java-maven-docker-pipeline/target/spring-boot-azure-micro-svc-sept19-0.0.1-SNAPSHOT.jar &
+      shell: nohup java -jar /var/lib/jenkins/workspace/java-maven-docker-pipeline/target/spring-boot-azure-micro-svc-sept19-0.0.1-SNAPSHOT.jar &
