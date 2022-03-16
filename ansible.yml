@@ -5,5 +5,5 @@
     docker_image:
       name: naveen412/test
       tag: ${BUILD_NUMBER}
-      state: started
+      state: build
 
