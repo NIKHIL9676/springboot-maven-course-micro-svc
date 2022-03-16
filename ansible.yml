@@ -1,9 +1,10 @@
 ---
 - hosts: localhost
   tasks:
-  - name: pull an image
-    docker_image:
-      name: naveen412/test
-      tag: ${BUILD_NUMBER}
-      state: build
+    - name: deploy nginx docker container
+      docker_container:
+        image: naveen412/test:lates
+        name: test
+        state: started
+        auto_remove: true
 
