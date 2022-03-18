@@ -7,8 +7,8 @@
         source: pull
     - name: run docker image as a container
       docker_container: 
-        image: naveen412/18mar:latest
         name: springboot-java
+        image: naveen412/18mar:latest
         state: started
         port:
         - "8082:8082"
