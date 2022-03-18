@@ -6,7 +6,7 @@
         name: naveen412/18mar:latest
         source: pull
     - name: run docker image as a container
-      docker: 
+      docker_container: 
         image: naveen412/18mar:latest
         name: springboot-java
         state: started
