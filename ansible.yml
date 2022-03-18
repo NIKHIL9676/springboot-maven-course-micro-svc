@@ -10,6 +10,6 @@
         name: springboot-java
         image: naveen412/18mar:latest
         state: started
-        port:
+        exposed_ports:
         - "8082:8082"
 
