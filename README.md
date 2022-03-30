@@ -1,2 +1,1 @@
-start the azure pipeline
-trigger jenkis pipeline
+trigger pipeline automatically
