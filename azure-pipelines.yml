@@ -26,43 +26,29 @@ stages:
         mavenAuthenticateFeed: false
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
-
     - task: Docker@2
       inputs:
-        containerRegistry: 'acrsc'
-        repository: 'naveen412/azurepipeline'
+        containerRegistry: 'docker-sc'
+        repository: 'naveen412/yaml-pipeline:10'
         command: 'buildAndPush'
-        Dockerfile: 'Dockerfile'
-
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: 'manifests'
-        artifact: 'manifests'
-        publishLocation: 'pipeline'
+        Dockerfile: '**/Dockerfile'
 
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
   jobs:
-  - job: Build
+  - job: Deploy
+    displayName: Deploy
     pool:
       vmImage: 'ubuntu-latest'
-    
     steps:
-      - task: DownloadPipelineArtifact@2
-        inputs:
-          buildType: 'current'
-          artifactName: 'manifets'
-          targetPath: '$(Pipeline.Workspace)/manifests'
+    - task: AzureWebAppContainer@1
+      inputs:
+        azureSubscription: 'Pay-As-You-Go(d480c57c-6111-439f-a530-21ab541c359c)'
+        appName: 'java-naveen1'
+        containers: 'naveen412/yaml-pipeline:10'
+        containerCommand: 'docker run naveen412/yaml-pipeline:10'
 
-      - task: KubernetesManifest@0
-        inputs:
-           action: 'deploy'
-           kubernetesServiceConnection: 'kubesc'
-           namespace: 'default'
-           manifests:
-             $(Pipeline.Workspace)/manifests/springboot-deployment.yml
-             $(Pipeline.Workspace)/manifests/springboot-service.yml
 
 
 
