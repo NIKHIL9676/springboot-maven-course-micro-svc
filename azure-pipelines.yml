@@ -29,7 +29,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'docker-sc'
-        repository: 'naveen412/yaml-pipeline:10'
+        repository: 'naveen412/yaml-pipeline'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
 
@@ -46,7 +46,7 @@ stages:
       inputs:
         azureSubscription: 'Pay-As-You-Go(d480c57c-6111-439f-a530-21ab541c359c)'
         appName: 'java-naveen1'
-        containers: 'naveen412/yaml-pipeline:10'
+        containers: 'naveen412/yaml-pipeline'
         containerCommand: 'docker run naveen412/yaml-pipeline:10'
 
 
