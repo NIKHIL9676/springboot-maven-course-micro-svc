@@ -47,7 +47,7 @@ stages:
         azureSubscription: 'Pay-As-You-Go(d480c57c-6111-439f-a530-21ab541c359c)'
         appName: 'java-naveen1'
         containers: 'naveen412/yaml-pipeline'
-        containerCommand: 'docker run naveen412/yaml-pipeline:10'
+        containerCommand: 'docker run naveen412/yaml-pipeline'
 
 
 
